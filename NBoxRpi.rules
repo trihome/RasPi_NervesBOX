@@ -1,0 +1,100 @@
+
+(rules PCB NBoxRpi
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (eu.mihosoft.freerouting.autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 1739)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.3)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.8)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.2)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd_smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_800:400_um-Power" "Via[0-1]_800:400_um" Power
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (via_rule
+    Power "Via[0-1]_800:400_um-Power"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    GND +3V3 "Net-(D5-Pad2)" "Net-(D6-Pad2)" "Net-(D7-Pad2)" "Net-(D8-Pad2)" /X02 /X01
+    /X00 /X03 "/GPIO14(TXD0)" "/GPIO15(RXD0)" /SDA /SCL "/GPIO13(PWM1)" "/GPIO12(PWM0)"
+    /GPIO6 "/GPIO8(SPI0_CE_N)" "/GPIO3(SCL1)" "/GPIO2(SDA1)" "Net-(PC1-Pad2)" "Net-(PC1-Pad3)" "Net-(PC2-Pad2)" "Net-(PC2-Pad3)"
+    "Net-(PC3-Pad2)" "Net-(PC3-Pad3)" "Net-(PC4-Pad2)" "Net-(PC4-Pad3)" "Net-(BT1-Pad1)" "/GPIO11(SPI0_SCK)" "/GPIO9(SPI0_MISO)" "/GPIO10(SPI0_MOSI)"
+    /AD0 /AD1 "Net-(C3-Pad1)" "Net-(D9-Pad2)" "Net-(D10-Pad2)" "Net-(D11-Pad2)" "Net-(D12-Pad2)" "Net-(D13-Pad1)"
+    "Net-(D14-Pad2)" "Net-(R21-Pad1)" "Net-(R23-Pad1)" "Net-(R24-Pad1)" "Net-(R25-Pad1)" "Net-(R27-Pad1)" "Net-(R28-Pad1)" "Net-(R29-Pad1)"
+    "Net-(R30-Pad1)" "Net-(U3-Pad2)" "Net-(U3-Pad1)" "Net-(R32-Pad1)" "Net-(R33-Pad1)" "Net-(R34-Pad1)" "Net-(R35-Pad1)" "/GPIO17(GEN0)"
+    "/GPIO4(GCLK)" /GPIO5 "/GPIO25(GEN6)" "/GPIO24(GEN5)" "/GPIO23(GEN4)" "/GPIO22(GEN3)"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class Power
+    +5V /Pow24+ "/Pow24-" /Y00 /Y01 /Y02 /Y03 /Pow24+In
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
